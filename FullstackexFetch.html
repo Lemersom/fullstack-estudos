@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ex01: Fazer uma requisição para a dummyjson API na parte de produtos</h1>
+    <h1>Ex02: Apresentar o nome e imagem dos produtos em uma lista</h1>
+    <ul id="ul01">
+
+    </ul>
+</body>
+</html>
+
+<script>
+    let ul01 = document.querySelector("#ul01")
+
+    async function reqProds() {
+        const res = await fetch("https://dummyjson.com/products");
+        const prods = await res.json();
+
+        console.log(prods)
+
+        for(let i = 0; i < prods.products.length; i++){
+            let li = document.createElement("li")
+            let img = document.createElement("img")
+
+            img.src = prods.products[i].images[0]
+
+            li.innerHTML = `${prods.products[i].title} <br>`
+            li.appendChild(img)
+            ul01.appendChild(li)
+        } 
+        return
+    }
+
+    reqProds()
+
+</script>
