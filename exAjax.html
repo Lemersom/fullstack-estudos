@@ -6,8 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Ex01: Fazer uma requisição para a dummyjson API na parte de produtos</h1>
-    <h1>Ex02: Apresentar o nome e imagem dos produtos em uma lista</h1>
+    <p>Ex01: Fazer uma requisição para a dummyjson API na parte de produtos</p>
+    <p>Ex02: Apresentar o nome e imagem dos produtos em uma lista</p>
+    <p>Ex03: Utilizar destructuring parameters</p>
+    <p>Ex04: Utilizar diretivas de promises, map.</p>
+    <p>Ex05: Paginação da dummyjson API na parte de produtos</p>
     <ul id="ul01">
 
     </ul>
@@ -21,8 +24,19 @@
         const res = await fetch("https://dummyjson.com/products");
         const prods = await res.json();
 
-        console.log(prods)
+        createProds(prods)  
+    }
 
+    /* Não precisa ser chamado:
+    (async () => {
+        const res = await fetch("https://dummyjson.com/products");
+        const prods = await res.json();
+
+        createProds(prods)  
+    }) ();
+    */
+
+    function createProds(prods) {
         for(let i = 0; i < prods.products.length; i++){
             let li = document.createElement("li")
             let img = document.createElement("img")
@@ -33,7 +47,6 @@
             li.appendChild(img)
             ul01.appendChild(li)
         } 
-        return
     }
 
     reqProds()

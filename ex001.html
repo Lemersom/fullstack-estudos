@@ -1,0 +1,110 @@
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Exercícios de Eventos</title>
+    <style type="text/css" media="all">
+      div { transition: all linear 1s; max-height: 100px; background-color: white; overflow: hidden; }
+      .escondido { max-height: 0; }
+      section { padding: 10px; border: 1px solid black; margin-bottom: 10px; }
+      section p span { font-weight: bold; }
+      section hr { margin: 10px auto; width: 98%; }
+      section .cursor { position: absolute; height: 30px; width: 30px; background-color: red; }
+
+     .translateDireita{
+        transform: translateX(500px) !important;
+     }
+
+    </style>
+  </head>
+  <body>
+
+    <section>
+
+      <p><span>Exercício 3:</span> Mover o div apresentado a seguir para a direita/esquerda, toda vez que o botão "click3" for clicado (utilizar o style.transform).</p>
+      <button id="btn3">click3</button>
+      <div id="div3" style="height: 50px; width: 50px; background-color: red; transform: translateX(0);"></div>
+      <hr />
+
+      <p><span>Exercício 6</span>: Acrescentar um elemento li com o texto "item X" no elemento ul a seguir (sendo X, o índice do elemento no ul), toda vez que o botão "click6" for pressionado.</p>
+      <button id="btn6">click6</button>
+      <ul id="ul6"></ul>
+    </section>
+
+    <section>
+
+      <p><span>Exercício 9:</span> Inserir o conteúdo do input a seguir dentro do elemento div a seguir, toda vez que o conteúdo do input for alterado (utilizar o evento change/keyup).</p>
+      <fieldset>
+        <legend>Exercício 9</legend>
+        <div>
+          <input id="input9" type="text" value="" />
+          <div id="div9" style="height: 25px; width: 50%; background-color: cyan"></div>
+        </div>
+      </fieldset>
+
+      <p><span>Exercício 10:</span> Capturar quando as teclas de seta para baixo/cima/esquerda/direita foram pressionadas, e alterar o posicionamento do div de classe cursor (utilizar o parâmetro evento e o atributo keyCode). É possível fazer sem o input? (Dica: evento focus, tabindex)</p>
+      <fieldset>
+        <legend>Exercício 10</legend>
+        <input id="input10" type="text" value="" />
+        <div style="position: relative; border: 1px solid black; margin: 10px; height: 100px;">
+          <div id="cursor10" class="cursor" style="top: 40px; left: 45%"></div>
+        </div>
+      </fieldset>
+
+    </section>
+
+  </body>
+</html>
+
+
+<script>
+    const btn3 = document.querySelector("#btn3")
+    const div3 = document.querySelector("#div3")
+
+    btn3.addEventListener("click", () => {
+        div3.classList.toggle("translateDireita")
+    })
+
+    const btn6 = document.querySelector("#btn6")
+    const ul6 = document.querySelector("#ul6")
+
+    let cont = 0
+
+    btn6.addEventListener("click", () => {
+        cont++
+        let li = document.createElement("li")
+        li.innerText = `item ${cont}`
+
+        ul6.appendChild(li)
+    })
+
+
+    const input9 = document.querySelector("#input9")
+    const div9 = document.querySelector("#div9")
+
+
+    input9.addEventListener("keyup", () => {
+        div9.innerText = input9.value
+    })
+
+
+    const input10 = document.querySelector("#input10")
+    const cursor10 = document.querySelector("#cursor10")
+
+    input10.addEventListener("keyup", (event) => {
+        if(event.code == "ArrowUp"){
+            cursor10.style.transform = "translateY(-20px)"
+        }
+        else if(event.code == "ArrowDown"){
+            cursor10.style.transform = "translateY(20px)"
+        }
+        else if(event.code == "ArrowRight"){
+            cursor10.style.transform = "translateX(50px)"
+        }
+        else if(event.code == "ArrowLeft"){
+            cursor10.style.transform = "translateX(-50px)"
+        }
+    })
+
+</script>
