@@ -2,11 +2,11 @@ import gradeNova from '../gradeNova'
 
 function GradeNova() {
 
-    const grade = Object.keys(gradeNova).map(key => [key])
-
     return (
         <ul>
-            {grade.map((item) => <li>{item}</li>)}
+            {Object.keys(gradeNova).map((disciplina) => (
+                <li style={{backgroundColor: gradeNova[disciplina].r ? 'red' : 'white'}}>{disciplina}</li>
+            ))}
         </ul>
     )
 }
